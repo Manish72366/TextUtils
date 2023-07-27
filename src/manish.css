@@ -1,0 +1,13 @@
+.container{
+    color: #61dafb;
+    background-color: black;
+    text-align: center;
+    padding: 10px;
+    font-size: 30px;
+    border-bottom: 3px solid  #61dafb;
+    display: inline-block;
+    width: 500px;
+   position:relative;
+   left: 32%;
+   margin-left: 0px;
+}
