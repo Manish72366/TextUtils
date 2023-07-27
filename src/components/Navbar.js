@@ -1,5 +1,4 @@
-// rfc  a shortuct for react function based components
-// In React, the term props stands for properties, which refers to the properties of an object. This is because all elements created in React are JavaScript objects. As a result, passing data into a component is done by creating properties and values for the object.
+
 import React from 'react'
 import PropTypes from 'prop-types'
 

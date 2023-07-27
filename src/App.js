@@ -1,13 +1,14 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
+import TextForm from "./components/TextForm";
 function App() {
   return (
     <>
-      {/* So we are importing Navbar from Navbar.js so the thing which that file returns has been shown here */}
       <Navbar title="textUtils" aboutText="About TextUtils" />
-      {/* <Navbar title = {7} aboutText = "about"/>  this show an error in console as title is integer*/}
-      <Navbar /> {/* Default props values will be assigned*/}
-      <Navbar title = "manish"/>
+      {/* // so basically container is a class of bootstrap which provide some other decorations to this text form  */}
+      <div className="container my-7">
+        <TextForm heading = "Enter the text"/>
+      </div>
     </>
   );
 }
