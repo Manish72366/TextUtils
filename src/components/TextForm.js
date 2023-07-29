@@ -11,6 +11,7 @@ export default function TextForm(props) {
     let newText = text.toUpperCase();
     setText(newText);
     setUndo(newText);
+    props.showAlert("Uppercase " , "success");
   };
   const handleLowClick = () => {
     console.log("Lowercase was clicked");
@@ -22,6 +23,7 @@ export default function TextForm(props) {
     console.log("Delete");
     setUndo(text);
     setText("");
+    props.showAlert("Deleted want to Undo ?" , "danger");
   };
   const handleExtraSpace = () => {
     let newText = text.split(/[ ]+/); // this will split all the words which have one or more spaces. // here we use REGEX in js to split it .
@@ -61,7 +63,8 @@ export default function TextForm(props) {
   const handleCopy = () =>
   {
     setUndo(text);
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text);  // we have to method writeText and readText inside this.
+    props.showAlert("Copy to Clipboard" , "success");
   }
   const handleCut = () =>
   {
