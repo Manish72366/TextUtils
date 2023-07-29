@@ -1,9 +1,9 @@
 import React ,{ useState }  from "react";
 
 
-export default function About() {
+export default function About(props) {
     // making a state object so mode is an object here have more functionallity
-    const [mode , setMode] = useState(
+    const [mode1 , setMode] = useState(
         {
             color : 'black',
             backgroundColor : 'white'
@@ -12,7 +12,7 @@ export default function About() {
     const [btn , setbtn] = useState("Dark Mode");
     const handleMode = () =>
     {
-         if (mode.color === 'white')
+         if (mode1.color === 'white')
          {
            setMode({
             color : 'black',
@@ -31,8 +31,8 @@ export default function About() {
     }
   return (
     <>
-      <div className="container my-3" style={mode}>
-        <h1 style={mode}>About Us</h1>
+      <div className="container my-3" style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}}>
+        <h1 style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}}>About Us</h1>
         <div className="accordion" id="accordionPanelsStayOpenExample">
           <div className="accordion-item">
             <h2 className="accordion-header">
@@ -43,7 +43,7 @@ export default function About() {
                 data-bs-target="#panelsStayOpen-collapseOne"
                 aria-expanded="true"
                 aria-controls="panelsStayOpen-collapseOne"
-                style={mode}
+                style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}}
               >
                 Accordion Item #1
               </button>
@@ -52,7 +52,7 @@ export default function About() {
               id="panelsStayOpen-collapseOne"
               className="accordion-collapse collapse show"
             >
-              <div className="accordion-body" style={mode}>
+              <div className="accordion-body" style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}}>
                 <strong>This is the first item's accordion body.</strong> It is
                 shown by default, until the collapse plugin adds the appropriate
                 classNamees that we use to style each element. These classNamees control
@@ -74,7 +74,7 @@ export default function About() {
                 data-bs-target="#panelsStayOpen-collapseTwo"
                 aria-expanded="false"
                 aria-controls="panelsStayOpen-collapseTwo"
-                style={mode}
+                style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}}
               >
                 Accordion Item #2
               </button>
@@ -83,7 +83,7 @@ export default function About() {
               id="panelsStayOpen-collapseTwo"
               className="accordion-collapse collapse"
             >
-              <div className="accordion-body" style={mode}>
+              <div className="accordion-body" style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}}>
                 <strong>This is the second item's accordion body.</strong> It is
                 hidden by default, until the collapse plugin adds the
                 appropriate classNamees that we use to style each element. These
@@ -105,7 +105,7 @@ export default function About() {
                 data-bs-target="#panelsStayOpen-collapseThree"
                 aria-expanded="false"
                 aria-controls="panelsStayOpen-collapseThree"
-                style={mode}
+                style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}}
               >
                 Accordion Item #3
               </button>
@@ -114,7 +114,7 @@ export default function About() {
               id="panelsStayOpen-collapseThree"
               className="accordion-collapse collapse"
             >
-              <div className="accordion-body" style={mode}>
+              <div className="accordion-body" style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}}>
                 <strong>This is the third item's accordion body.</strong> It is
                 hidden by default, until the collapse plugin adds the
                 appropriate classNamees that we use to style each element. These
@@ -128,9 +128,7 @@ export default function About() {
             </div>
           </div>
         </div>
-        <div className="container">
-          <button type="button" className="btn btn-dark my-3" onClick = {handleMode} style={mode}>{btn}</button>
-        </div>
+        
       </div>
     </>
   );

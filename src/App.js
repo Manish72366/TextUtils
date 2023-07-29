@@ -3,8 +3,14 @@ import React , { useState } from "react";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 // import Alert from "./components/Alert";
-// import About from "./components/About";
-
+import About from "./components/About";
+// go to react router and from there you can see this code  and put here.
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom"
 
 function App() {
   const [mode , setMode] = useState('light');
@@ -15,7 +21,7 @@ function App() {
       msg : message,
       type : type
     })
-    // Now niche wala hum ku use kr re explain abhi apne jaise dark mode on kiya message aayega ar apne use cross se cut kr diya so wo chala gya now alert ki value still usme values rahengi but wo chala gya so agr ab ap phir enable dark mode karoge so wo nahi aayega kunki apne cross krke hata diya and alert null bhi nahi hua so you have to refersh the page ,but niche time out se hm use fir null kr denge ar phir use bula denge even if i delete it.
+    
     setTimeout(() => {
       setAlert(null);
     }, 1500);
@@ -57,12 +63,20 @@ function App() {
   return (
 
     <>
-      <Navbar title="textUtils" aboutText="About TextUtils" mode = {mode} toggleMode = {toggleMode}/>
+     <BrowserRouter>
+      <Navbar title="textUtils" aboutText="About" mode = {mode} toggleMode = {toggleMode}/>
       {/* <Alert alert = {alert}/> */}
       <div className="container my-7" >
-        <TextForm heading = "Enter the text" mode = {mode} showAlert = {showAlert}/>
+        {/* this we took from react router  */}
+        {/* meaning of this that we click on home about and so on so how we switch to those pages */}
+        {/* exact path matches exact path and simply write path matches partially so always write exact */}
+        {/*react  router used to switch in pages without loading page as single page experience it gaves to us*/}
+        <Routes>   
+          <Route exact path="/about" element={<About mode = {mode} />} />
+          <Route exact path="/" element={<TextForm heading="Enter the text to analyze below" mode = {mode} />} />
+        </Routes>
       </div>
-      {/* <About/> */}
+      </BrowserRouter>
     </>
   );
 }

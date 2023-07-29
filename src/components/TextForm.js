@@ -86,9 +86,9 @@ export default function TextForm(props) {
       <div className="container">
         <h1>{props.heading}</h1>
         <div className="mb-3">
-          {/* <textarea className="form-control" value={text} onChange={handleOnChange} style = {{backgroundColor : props.mode === 'dark'? 'white' : 'dark' , color : props.mode === 'dark'? 'white': 'dark'} id="MyBox" rows="8" ></textarea>{" "} inside curely bracket you can write js and here i used ternary operator also and set the style*/}
+          <textarea className="form-control" value={text} onChange={handleOnChange} style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}} id="MyBox" rows="8" ></textarea> {/* {" "} inside curely bracket you can write js and here i used ternary operator also and set the style*/}
           {/* curely bracket with backticks inside a className helps us to write js */}
-          <textarea className={`form-control text-${props.mode === 'dark' ? 'light' : 'dark'}`} value={text} onChange={handleOnChange} id="MyBox" rows="8" ></textarea>{" "}
+          {/* <textarea className={`form-control text-${props.mode === 'dark' ? 'light' : 'dark'}`} value={text} onChange={handleOnChange} id="MyBox" rows="8" ></textarea>{" "} */}
           {/* value = {text} means textarea mai pre written text hoga  ar usko change aap kr skte ho setText se Now onChange used when you try to write in the text area now listen if you remove value so you can easily write any thing but value block your area to write so we have to use onChange here as on change happen we are calling a function handleOnChange . so onChange is important to write  */}
         </div>
         <button className="btn btn-primary mx-2 my-2" onClick={handleUpClick}> Convert to Uppercase </button>
