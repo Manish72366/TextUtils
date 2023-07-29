@@ -33,6 +33,13 @@ function App() {
       document.title = "TextUtils-LightMode"; // changing the text aside the favicon
       var link = document.querySelector("link[rel*='icon']"); // changing the favicon in light mode.
       link.href = 'text-format (2).png';
+      // Below is the code for changing text title in a interval to attract the user bad experience
+      // setInterval(() => {
+      //   document.title = "Install It Fast";
+      // }, 600);
+      // setInterval(() => {
+      //   document.title = "Bhai jldi";
+      // }, 500);
     }
     else
     {
