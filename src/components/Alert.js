@@ -17,3 +17,12 @@ export default function Alert(props) {
     </div>    
   )
 }
+// Add "homepage": "https://Manish72366.github.io/reactLearning", in first {} from deployment create react app
+// and  then run (npm install --save gh-pages)
+// Now add 2 scripts ->
+// "predeploy": "npm run build",
+// "deploy": "gh-pages -d build",
+// And then (npm run deploy)
+
+
+

@@ -11,7 +11,7 @@ export default function TextForm(props) {
     let newText = text.toUpperCase();
     setText(newText);
     setUndo(newText);
-    props.showAlert("Uppercase " , "success");
+    // props.showAlert("Uppercase " , "success");
   };
   const handleLowClick = () => {
     console.log("Lowercase was clicked");
@@ -23,7 +23,7 @@ export default function TextForm(props) {
     console.log("Delete");
     setUndo(text);
     setText("");
-    props.showAlert("Deleted want to Undo ?" , "danger");
+    props.showAlert("Deleted , want to Undo ?" , "danger");
   };
   const handleExtraSpace = () => {
     let newText = text.split(/[ ]+/); // this will split all the words which have one or more spaces. // here we use REGEX in js to split it .
@@ -64,6 +64,7 @@ export default function TextForm(props) {
   {
     setUndo(text);
     navigator.clipboard.writeText(text);  // we have to method writeText and readText inside this.
+    document.getSelection().removeAllRanges(); // wo jo copy krke blue blue ni ata text pe toh usse hatane ke liye
     props.showAlert("Copy to Clipboard" , "success");
   }
   const handleCut = () =>
@@ -91,22 +92,23 @@ export default function TextForm(props) {
           {/* <textarea className={`form-control text-${props.mode === 'dark' ? 'light' : 'dark'}`} value={text} onChange={handleOnChange} id="MyBox" rows="8" ></textarea>{" "} */}
           {/* value = {text} means textarea mai pre written text hoga  ar usko change aap kr skte ho setText se Now onChange used when you try to write in the text area now listen if you remove value so you can easily write any thing but value block your area to write so we have to use onChange here as on change happen we are calling a function handleOnChange . so onChange is important to write  */}
         </div>
-        <button className="btn btn-primary mx-2 my-2" onClick={handleUpClick}> Convert to Uppercase </button>
-        <button className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to LowerCase </button>
-        <button className="btn btn-primary mx-2 my-2" onClick={Delete}> Delete </button>
+        <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleUpClick}> Convert to Uppercase </button>
+        <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to LowerCase </button>
+        <button disabled = {text.length == 0} className="btn btn-primary mx-2 my-2" onClick={Delete}> Delete </button>
         <button className="btn btn-primary mx-2 my-2" onClick={Undo}> Undo </button>
-        <button className="btn btn-primary mx-2 my-2" onClick={handleCopy}> Copy  </button>
-        <button className="btn btn-primary mx-2 my-2" onClick={handleCut}> Cut </button>
-        <button className="btn btn-primary mx-2 my-2" onClick={handlePaste}> Paste </button>
-        <button className="btn btn-primary mx-2 my-2" onClick={handleExtraSpace}>Remove Extra Space</button>
-        <button className="btn btn-primary mx-2 my-2" onClick={Alternate}>bade chote</button>
-        <button className="btn btn-primary mx-2 my-2" onClick={Reverse}>Reverse</button>
+        <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleCopy}> Copy  </button>
+        <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleCut}> Cut </button>
+        <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handlePaste}> Paste </button>
+        <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleExtraSpace}>Remove Extra Space</button>
+        <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={Alternate}>bade chote</button>
+        <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={Reverse}>Reverse</button>
       </div>
       <div className="container my-3">
         
         <h2>Your text summary </h2>
-        <p><b>{text.length ===  0 ? text.split(" ").length - 1 : text.split(" ").length}</b> words and <b>{text.length}</b> characters</p>
-        <p>{0.008 * (text.split(" ").length - 1)} Minutes read</p>  {/* on avg the time taken to read one word is  0.008 minute */}
+        {/* The split() method splits a string into an array of substrings. The split() method returns the new array . The filter() method creates a new array filled with elements that pass a test provided by a function. */}
+        <p><b>{text.split(" ").filter((ele) => {return ele.length != 0}).length}</b> words and <b>{text.length}</b> characters</p>
+        <p>{0.008 * (text.split(" ").filter((ele) => {return ele.length != 0}).length)} Minutes read</p>  {/* on avg the time taken to read one word is  0.008 minute */}
         <h3>Preview</h3>
         <p><b>{text}</b></p>
       </div>

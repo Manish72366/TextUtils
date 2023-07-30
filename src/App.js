@@ -35,10 +35,10 @@ function App() {
       document.body.style.color = 'black'; // whole body text color = black
       let ele = document.getElementById('MyBox');// MyBox id element is in TextForm.js 
       ele.style.backgroundColor ='white'; // applying backgroun color to the TextForm
-      showAlert("Light mode has been successfully enabled" , "success");
+      // showAlert("Light mode has been successfully enabled" , "success");
       document.title = "TextUtils-LightMode"; // changing the text aside the favicon
       var link = document.querySelector("link[rel*='icon']"); // changing the favicon in light mode.
-      link.href = 'text-format (2).png';
+      link.href = 'light.png';
       // Below is the code for changing text title in a interval to attract the user bad experience
       // setInterval(() => {
       //   document.title = "Install It Fast";
@@ -54,10 +54,10 @@ function App() {
       document.body.style.color = 'white';
       let ele = document.getElementById('MyBox');
       ele.style.backgroundColor ='rgb(3,2,37)';
-      showAlert("Dark mode has been successfully enabled" , "success");
+      // showAlert("Dark mode has been successfully enabled" , "success");
       document.title = "TextUtils-DarkMode";
       var link = document.querySelector("link[rel*='icon']");
-      link.href = 'text-format (1).png';
+      link.href = 'dark.png';
     }
   }
   return (
@@ -65,6 +65,7 @@ function App() {
     <>
      <BrowserRouter>
       <Navbar title="textUtils" aboutText="About" mode = {mode} toggleMode = {toggleMode}/>
+      {/* <TextForm heading="Enter the text to analyze below" mode = {mode} /> */}
       {/* <Alert alert = {alert}/> */}
       <div className="container my-7" >
         {/* this we took from react router  */}
