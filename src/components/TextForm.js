@@ -98,7 +98,7 @@ export default function TextForm(props) {
         <button className="btn btn-primary mx-2 my-2" onClick={Undo}> Undo </button>
         <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleCopy}> Copy  </button>
         <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleCut}> Cut </button>
-        <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handlePaste}> Paste </button>
+        <button  className="btn btn-primary mx-2 my-2" onClick={handlePaste}> Paste </button>
         <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleExtraSpace}>Remove Extra Space</button>
         <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={Alternate}>bade chote</button>
         <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={Reverse}>Reverse</button>
