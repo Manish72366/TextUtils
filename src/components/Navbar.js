@@ -2,15 +2,46 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import TextForm from './TextForm';
+import About from './About';
 export default function Navbar(props) {
   const setFavbarHome = () =>
   {
     document.title = "TextUtils-Home";
-  }
+  };
   const setFavbarAbout = () =>
   {
     document.title = "TextUtils-About";
-  }
+  };
+  const changeBgColor =  (clr) =>
+  {
+    document.body.style.backgroundColor = clr;
+    document.body.style.color = 'white';
+    let ele = document.getElementById('MyBox');
+    ele.style.backgroundColor = clr;
+    ele.style.color = 'white';
+    // i am trying to replicate the same thing for about also but if you look to the about code so inside the html we are changing the color so that will replicate things. 
+    // let ele1 = document.getElementsByClassName('abt');
+    // ele1.style.backgroundColor = clr;
+    // ele1.style.color = 'white';
+  };
+  const changeBgColorRed =  () =>
+  {
+    changeBgColor("red");
+  };
+  const changeBgColorGreen =  () =>
+  {
+    changeBgColor("green");
+  };
+  const changeBgColorPurple =  () =>
+  {
+    changeBgColor("blueviolet");
+  };
+  const changeBgColorBlue =  () =>
+  {
+    changeBgColor("blue");
+  };
+  
   return (
     <>
     <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}> {/* Curly bracket and then backticks helps us to use  template literal inside the whole string ${} use to write js things inside */}
@@ -28,10 +59,13 @@ export default function Navbar(props) {
             <Link className={`nav-link ${props.active}`} to="/about" onClick={setFavbarAbout}>{props.aboutText}</Link> {/* href = "/" means link to the same page where you are */}
           </li>
         </ul>
-        <form className="d-flex" role="search">
-          <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-          <button className="btn btn-outline-success mx-3" type="submit">Search</button>
-        </form>
+        {/* <button className='btns' id = "red" onClick={changeBgColor('red')} >red</button> this set the color to red without clicking to it so use function to overcome the problem , simple onClick ko ek function chayiye hota hai function call ni*/}
+        <button className='btns' id = "red" onClick={changeBgColorRed} ></button>
+        <button className='btns' id = "green" onClick={changeBgColorGreen}></button>
+        <button className='btns' id = "purple" onClick={changeBgColorPurple}></button>
+        <button className='btns' id = "blue" onClick={changeBgColorBlue}></button>
+      
+     
         <div className={`form-check form-switch text-${props.mode === 'dark' ? 'light' : 'dark'}`}> {/* text-light to do text color white*/}
           <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleMode} />
           <label className="form-check-label" htmlFor="flexSwitchCheckDefault" >Enable {props.mode === 'light' ? 'dark' : 'light'} Mode</label>

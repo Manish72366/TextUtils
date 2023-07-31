@@ -31,7 +31,7 @@ export default function About(props) {
     }
   return (
     <>
-      <div className="container my-3" style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}}>
+      <div className="container my-3 abt" style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)' }}>
         <h1 style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}}>About Us</h1>
         <div className="accordion" id="accordionPanelsStayOpenExample">
           <div className="accordion-item">
