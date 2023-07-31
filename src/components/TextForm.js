@@ -106,9 +106,9 @@ export default function TextForm(props) {
       <div className="container my-3">
         
         <h2>Your text summary </h2>
-        {/* The split() method splits a string into an array of substrings. The split() method returns the new array . The filter() method creates a new array filled with elements that pass a test provided by a function. */}
-        <p><b>{text.split(" ").filter((ele) => {return ele.length != 0}).length}</b> words and <b>{text.length}</b> characters</p>
-        <p>{0.008 * (text.split(" ").filter((ele) => {return ele.length != 0}).length)} Minutes read</p>  {/* on avg the time taken to read one word is  0.008 minute */}
+        {/* text.split(/\s + /) helps you to split white spaces along with new spaces previously we only able to split with respect white space but not by new line (text.split(" ") . \s is for new line*/}
+        <p><b>{text.split(/\s+/).filter((ele) => {return ele.length != 0}).length}</b> words and <b>{text.length}</b> characters</p>
+        <p>{0.008 * (text.split(/\s+/).filter((ele) => {return ele.length != 0}).length)} Minutes read</p> 
         <h3>Preview</h3>
         <p><b>{text}</b></p>
       </div>

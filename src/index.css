@@ -11,3 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/*  Below css is for icon you see on accordion button after we use as the element is in after  */
+.accordion-button::after{
+    filter : invert(1);
+}

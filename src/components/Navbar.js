@@ -22,10 +22,10 @@ export default function Navbar(props) {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" to="/" onClick={setFavbarHome}>Home</Link>
+            <Link className={`nav-link ${props.active}`} aria-current="page" to="/" onClick={setFavbarHome}>Home</Link> {/* remove active className bcz usse hamesa hi home active rhta tha*/}
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/about" onClick={setFavbarAbout}>{props.aboutText}</Link> {/* href = "/" means link to the same page where you are */}
+            <Link className={`nav-link ${props.active}`} to="/about" onClick={setFavbarAbout}>{props.aboutText}</Link> {/* href = "/" means link to the same page where you are */}
           </li>
         </ul>
         <form className="d-flex" role="search">

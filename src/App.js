@@ -73,8 +73,8 @@ function App() {
         {/* exact path matches exact path and simply write path matches partially so always write exact */}
         {/*react  router used to switch in pages without loading page as single page experience it gaves to us*/}
         <Routes>   
-          <Route exact path="/about" element={<About mode = {mode} />} />
-          <Route exact path="/" element={<TextForm heading="Enter the text to analyze below" mode = {mode} />} />
+          <Route exact path="/about" element={<About mode = {mode} acitve = "true" />} />
+          <Route exact path="/" element={<TextForm heading="Enter the text to analyze below" mode = {mode} active = "true"/>} />
         </Routes>
       </div>
       </BrowserRouter>
