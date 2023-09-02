@@ -1,6 +1,4 @@
 import React ,{ useState }  from "react";
-
-
 export default function About(props) {
     // making a state object so mode is an object here have more functionallity
     const [mode1 , setMode] = useState(

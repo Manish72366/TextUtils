@@ -1,17 +1,23 @@
-import React, { useState } from "react"; // use state is a hook search react hook for more info
+import React, { useState  , useEffect} from "react"; // use state is a hook search react hook for more info
 // Text is a state variable.
 export default function TextForm(props) {
-  const [text, setText] = useState(""); // this we take from react hook from google it tells that text will set the value to the first para which use state returns and setText will take the 2nd para value . simply ap jb text ko update karoge to wo setText function se hi hoga  by default the text is Likho
+  const [text, setText] = useState("");
   const [undo, setUndo] = useState("Undo");
-  // text = "manish" updation by this is not allowed here.  wrong way to change the state as text is state.
-  //   setText("New text"); // correct way to change the state
-  // console khol ke sab dekh lo.
+  const [voices, setVoices] = useState([]);
+  const [selectedVoice, setSelectedVoice] = useState(null);
+  useEffect(() => {
+    // Fetch available voices when the component mounts
+    window.speechSynthesis.onvoiceschanged = () => {
+      const availableVoices = window.speechSynthesis.getVoices();
+      setVoices(availableVoices);
+      setSelectedVoice(availableVoices[0]); // Select the first voice by default
+    };
+  }, []);
   const handleUpClick = () => {
     console.log("Uppercase was clicked");
     let newText = text.toUpperCase();
     setText(newText);
     setUndo(newText);
-    // props.showAlert("Uppercase " , "success");
   };
   const handleLowClick = () => {
     console.log("Lowercase was clicked");
@@ -26,8 +32,8 @@ export default function TextForm(props) {
     props.showAlert("Deleted , want to Undo ?" , "danger");
   };
   const handleExtraSpace = () => {
-    let newText = text.split(/[ ]+/); // this will split all the words which have one or more spaces. // here we use REGEX in js to split it .
-    setText(newText.join(" ")); // now join each word with a single space.
+    let newText = text.split(/[ ]+/); 
+    setText(newText.join(" ")); 
   };
   const Undo = () => {
     console.log("Undo");
@@ -58,8 +64,11 @@ export default function TextForm(props) {
     }
     setText(newText);
   };
-
-  // The Clipboard API can be used to implement cut, copy, and paste features within a web application. EventTarget Clipboard. The system clipboard is exposed through the global Navigator.clipboard property.
+  function setColor() {
+    let x = document.body;
+    x.style.backgroundColor = x.style.backgroundColor == "yellow" ? "pink" : "yellow";
+  }
+  
   const handleCopy = () =>
   {
     setUndo(text);
@@ -73,6 +82,14 @@ export default function TextForm(props) {
     setUndo(text);
     setText("");
   }
+  
+  const handleSpeak = () => {
+    if (selectedVoice) {
+      const speech = new SpeechSynthesisUtterance(text);
+      speech.voice = selectedVoice;
+      window.speechSynthesis.speak(speech);
+    }
+  };
   const handlePaste = () =>
   {
      setText(text + " " + undo);
@@ -80,17 +97,16 @@ export default function TextForm(props) {
   // event which has been happen
   const handleOnChange = (event) => {
     console.log("Onchange function run");
-    setText(event.target.value); // this means that what ever user try to type , write here also before using this event.target.value we can't able to write anything inside the text. so new text will updated
+    setText(event.target.value);
   };
+  
+  
   return (
     <>
       <div className="container">
         <h1>{props.heading}</h1>
         <div className="mb-3">
-          <textarea className="form-control" value={text} onChange={handleOnChange} style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}} id="MyBox" rows="8" ></textarea> {/* {" "} inside curely bracket you can write js and here i used ternary operator also and set the style*/}
-          {/* curely bracket with backticks inside a className helps us to write js */}
-          {/* <textarea className={`form-control text-${props.mode === 'dark' ? 'light' : 'dark'}`} value={text} onChange={handleOnChange} id="MyBox" rows="8" ></textarea>{" "} */}
-          {/* value = {text} means textarea mai pre written text hoga  ar usko change aap kr skte ho setText se Now onChange used when you try to write in the text area now listen if you remove value so you can easily write any thing but value block your area to write so we have to use onChange here as on change happen we are calling a function handleOnChange . so onChange is important to write  */}
+          <textarea className="form-control" value={text} onChange={handleOnChange} style = {{backgroundColor : props.mode === 'dark'? 'rgb(3 ,2, 37)' : 'white' , color : props.mode === 'dark'? 'white': 'rgb(3 ,2, 37)'}} id="MyBox" rows="8" ></textarea> 
         </div>
         <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleUpClick}> Convert to Uppercase </button>
         <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to LowerCase </button>
@@ -102,11 +118,31 @@ export default function TextForm(props) {
         <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={handleExtraSpace}>Remove Extra Space</button>
         <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={Alternate}>bade chote</button>
         <button disabled = {text.split(" ").filter((ele) =>{return ele.length != 0}).length == 0} className="btn btn-primary mx-2 my-2" onClick={Reverse}>Reverse</button>
+        <select onChange={(e) => {
+            const selectedVoiceIndex = e.target.value;
+            setSelectedVoice(voices[selectedVoiceIndex]);
+          }}
+        >
+          {voices.map((voice, index) => (
+            <option key={index} value={index}>
+              {voice.name}
+            </option>
+          ))}
+        </select>
+        <button
+          disabled={text.split(" ").filter((ele) => ele.length !== 0).length === 0}
+          className="btn btn-primary mx-2 my-2"
+          id="spk"
+          onClick={handleSpeak}
+        >
+          Speak
+        </button>
+        
+        
       </div>
       <div className="container my-3">
         
         <h2>Your text summary </h2>
-        {/* text.split(/\s + /) helps you to split white spaces along with new spaces previously we only able to split with respect white space but not by new line (text.split(" ") . \s is for new line*/}
         <p><b>{text.split(/\s+/).filter((ele) => {return ele.length != 0}).length}</b> words and <b>{text.length}</b> characters</p>
         <p>{0.008 * (text.split(/\s+/).filter((ele) => {return ele.length != 0}).length)} Minutes read</p> 
         <h3>Preview</h3>

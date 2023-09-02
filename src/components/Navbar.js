@@ -13,6 +13,8 @@ export default function Navbar(props) {
   {
     document.title = "TextUtils-About";
   };
+  // Harry bhai did this with the use of bootstrap  bg class bg-primary and all those thing.
+  // he used document.body.classList.add('bg-' + cls) and document.body.classList.remove('bg-success') etc he removes it bcz if one set to be the background so other won't allowed
   const changeBgColor =  (clr) =>
   {
     document.body.style.backgroundColor = clr;
@@ -60,7 +62,8 @@ export default function Navbar(props) {
           </li>
         </ul>
         {/* <button className='btns' id = "red" onClick={changeBgColor('red')} >red</button> this set the color to red without clicking to it so use function to overcome the problem , simple onClick ko ek function chayiye hota hai function call ni*/}
-        <button className='btns' id = "red" onClick={changeBgColorRed} ></button>
+        {/* <button className='btns' id = "red" onClick={changeBgColorRed} ></button> */}
+        <button className='btns' id = "red" onClick={() => {changeBgColor('red')}} ></button> {/* By this way you can directly send to the function*/}
         <button className='btns' id = "green" onClick={changeBgColorGreen}></button>
         <button className='btns' id = "purple" onClick={changeBgColorPurple}></button>
         <button className='btns' id = "blue" onClick={changeBgColorBlue}></button>
